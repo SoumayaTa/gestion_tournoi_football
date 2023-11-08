@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @Data
@@ -22,4 +23,8 @@ public class Equipe {
     @OneToMany(mappedBy = "equipe", cascade = CascadeType.ALL)
     List<Joueur> joueurs;
 
+    @Override
+    public int hashCode() {
+        return Objects.hash(idEquipe, nomEquipe, pays);
+    }
 }

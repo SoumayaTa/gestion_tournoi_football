@@ -8,7 +8,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Time;
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,9 +34,13 @@ public class Match {
     @JoinColumn(name = "stade_id")
     private Stade stade;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    @JoinTable(name = "equipe_match")
-    private List<Equipe> equipe;
+    @ManyToOne
+    @JoinColumn(name = "equipe_domicile_id")
+    private Equipe equipeDomicile;
+
+    @ManyToOne
+    @JoinColumn(name = "equipe_exterieur_id")
+    private Equipe equipeExterieur;
 
     @Override
     public int hashCode() {
